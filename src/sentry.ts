@@ -1,5 +1,6 @@
 // Dependency-free Sentry reporting: posts an error event to the project's envelope endpoint using the DSN.
 export interface SentryEnv { SENTRY_DSN?: string; RELEASE?: string }
+declare const __RELEASE__: string | undefined;
 
 export async function captureException(env: SentryEnv, err: unknown, request: Request): Promise<void> {
   if (!env.SENTRY_DSN) return;
@@ -15,7 +16,7 @@ export async function captureException(env: SentryEnv, err: unknown, request: Re
       platform: "javascript",
       level: "error",
       server_name: "openhq-tidyform",
-      release: env.RELEASE ?? "unknown",
+      release: env.RELEASE ?? (typeof __RELEASE__ !== "undefined" ? __RELEASE__ : "unknown"),
       environment: "production",
       tags: { route: url.pathname, runtime: "cloudflare-workers" },
       request: { url: request.url, method: request.method },

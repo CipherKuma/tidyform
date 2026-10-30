@@ -32,7 +32,7 @@ export const landing = () => shell("Tidyform: forms for indie sites", `
 <div class="card"><h3>Spam filtering</h3><p>Honeypot field and rate limits catch the bots before they reach you.</p></div>
 <div class="card"><h3>Works anywhere</h3><p>Static sites, Notion embeds, a hand-built portfolio: if it can post a form, it works.</p></div>
 </section>
-<section class="card" style="max-width:480px"><h3>Try it</h3><form class="demo" id="f"><input name="email" type="email" placeholder="you@yourdomain.com" required><textarea name="message" rows="3" placeholder="Say hello" required></textarea><input name="website" style="display:none" tabindex="-1" autocomplete="off"><button class="btn">Send test submission</button><span id="out" role="status"></span></form></section>
+<section class="card" style="max-width:480px"><h3>Try it</h3><form class="demo" id="f"><input name="name" placeholder="Your name"><input name="email" type="email" placeholder="you@yourdomain.com" required><textarea name="message" rows="3" placeholder="Say hello" required></textarea><input name="website" style="display:none" tabindex="-1" autocomplete="off"><button class="btn">Send test submission</button><span id="out" role="status"></span></form></section>
 <script>document.getElementById("f").addEventListener("submit",async e=>{e.preventDefault();const r=await fetch("/api/submit",{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify(Object.fromEntries(new FormData(e.target)))});const j=await r.json();document.getElementById("out").textContent=r.ok?"Received: "+j.id:j.error})</script>`);
 
 export const pricing = () => shell("Pricing: Tidyform", `

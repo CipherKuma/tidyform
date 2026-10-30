@@ -1,11 +1,10 @@
-name = "openhq-tidyform"
-main = "src/index.ts"
+# Cloudflare Pages project "tidyform" (https://tidyform.pages.dev). The Worker code is bundled into
+# dist/_worker.js by deploy.mjs (advanced mode), which also bakes in the release label and the BREAK flag.
+name = "tidyform"
+pages_build_output_dir = "./dist"
 compatibility_date = "2026-05-01"
-workers_dev = true
 
-[vars]
-BREAK_CHECKOUT = "false"
-RELEASE = "v1.0.0"
-
-# Secrets (wrangler secret put): SENTRY_DSN (optional, enables error reporting),
-# STRIPE_SECRET_KEY + STRIPE_PRICE_ID (optional, enables real sandbox Checkout).
+# Secrets, set with `node deploy.mjs --secrets` (never committed):
+#   COMPOSIO_API_KEY  delivers the contact form to the support inbox through Composio Gmail
+#   SENTRY_DSN        optional, error reporting
+#   STRIPE_SECRET_KEY, STRIPE_PRICE_ID  optional, real sandbox Checkout
