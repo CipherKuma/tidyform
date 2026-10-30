@@ -1,0 +1,11 @@
+name = "openhq-tidyform"
+main = "src/index.ts"
+compatibility_date = "2026-05-01"
+workers_dev = true
+
+[vars]
+BREAK_CHECKOUT = "false"
+RELEASE = "v1.0.0"
+
+# Secrets (wrangler secret put): SENTRY_DSN (optional, enables error reporting),
+# STRIPE_SECRET_KEY + STRIPE_PRICE_ID (optional, enables real sandbox Checkout).
